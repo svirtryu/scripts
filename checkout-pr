@@ -1,0 +1,16 @@
+#!/usr/bin/env bash
+
+#
+# Convenience script for checking out a pull request as a branch from git
+#
+
+DEFAULT_ORIGIN="virtru"
+
+ORIGIN=${2:-$DEFAULT_ORIGIN}
+
+if [ -n "$1" ]; then
+  git fetch $ORIGIN pull/$1/head:pr/$1 && git checkout pr/$1
+else
+  echo "You must specify a pull request number"
+  echo "Usage: checkout-pr PR [ORIGIN=$DEFAULT_ORIGIN]"
+fi
